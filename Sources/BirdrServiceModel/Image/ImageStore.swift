@@ -19,6 +19,21 @@ public struct ImageStore: UniquelyIdentified, Codable {
         self.identification = UUID()
     }
     
+    // Just used for request decoding
+    public struct Request: Codable {
+        public let data: Data
+        public let type: String
+        public let name: String?
+        
+        public func convert() -> ImageStore {
+            ImageStore(
+                data: self.data,
+                type: self.type,
+                withName: self.name
+            )
+        }
+    }
+    
     /// Constructs the return type by wrapping itself with a key
     public func makeReturn(withDifferentKey differentKey: String? = nil) -> Return {
         Return(key: differentKey ?? key, storedImage: self)
