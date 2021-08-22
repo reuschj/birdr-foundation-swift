@@ -28,6 +28,27 @@ public struct BirdSpotting: UniquelyIdentified, PostableSpotting {
         self.identification = UUID()
     }
     
+    /// Just used for request decoding
+    public struct Request: PostableSpotting {
+        public var title: String
+        public var imageKeys: Set<String>
+        public var bird: BirdIdentification
+        public var location: Location?
+        public var timestamp: Int?
+        public var description: String?
+        
+        public func convert() -> BirdSpotting {
+            BirdSpotting(
+                title: self.title,
+                imageKeys: self.imageKeys,
+                bird: self.bird,
+                location: self.location,
+                timestamp: self.timestamp,
+                description: self.description
+            )
+        }
+    }
+    
     /// Constructs the return type by wrapping itself with a key
     public func makeReturn(withDifferentKey differentKey: String? = nil) -> Return {
         Return(key: differentKey ?? key, spotting: self)

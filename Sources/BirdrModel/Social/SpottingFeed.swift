@@ -41,6 +41,15 @@ public struct SpottingFeed<Spotting>: UniquelyIdentified, Codable where Spotting
         }
     }
     
+    // Just used for request decoding
+    public struct Request: Codable {
+        public var userID: String
+        
+        public func convert() -> SpottingFeed<Spotting> {
+            SpottingFeed(userId: self.userID)
+        }
+    }
+    
     /// Constructs the return type by wrapping itself with a key
     public func makeReturn(withDifferentKey differentKey: String? = nil) -> Return {
         Return(key: differentKey ?? key, feed: self)

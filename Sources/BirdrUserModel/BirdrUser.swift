@@ -30,6 +30,27 @@ public struct BirdrUser: Timestamped, UniquelyIdentified, UserProtocol, Codable 
         self.identification = UUID()
     }
     
+    // Just used for request decoding
+    public struct Request: UserProtocol, Codable {
+        public var userName: String
+        public var name: UserName
+        public let feedKey: String?
+        public var location: String?
+        public var profilePhotoKey: String?
+        public var description: String?
+        
+        public func convert() -> BirdrUser {
+            BirdrUser(
+                userName: self.userName,
+                name: self.name,
+                feedKey: self.feedKey,
+                location: self.location,
+                profilePhotoKey: self.profilePhotoKey,
+                description: self.description
+            )
+        }
+    }
+    
     /// Constructs the return type by wrapping itself with a key
     public func makeReturn(withDifferentKey differentKey: String? = nil) -> Return {
         Return(key: differentKey ?? key, user: self)
