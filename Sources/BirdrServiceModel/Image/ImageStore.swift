@@ -18,5 +18,13 @@ public struct ImageStore: Codable {
     public struct Return: Codable {
         public let key: String
         public let storedImage: ImageStore
+        
+        public init(
+            key: String,
+            storedImage: ImageStore
+        ) {
+            self.key = key
+            self.storedImage = storedImage
+        }
     }
 }
