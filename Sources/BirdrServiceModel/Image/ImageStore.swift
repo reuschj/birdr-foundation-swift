@@ -15,7 +15,7 @@ public struct ImageStore: Codable {
         self.name = name
     }
 
-    public struct ImageReturn: Codable {
+    public struct Return: Codable {
         public let key: String
         public let storedImage: ImageStore
     }
