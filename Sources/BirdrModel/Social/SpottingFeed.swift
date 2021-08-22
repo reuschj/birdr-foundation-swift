@@ -41,8 +41,9 @@ public struct SpottingFeed<Spotting>: UniquelyIdentified, Codable where Spotting
         }
     }
     
-    public func makeReturn(withKey key: String) -> Return {
-        Return(key: key, feed: self)
+    /// Constructs the return type by wrapping itself with a key
+    public func makeReturn(withDifferentKey differentKey: String? = nil) -> Return {
+        Return(key: differentKey ?? key, feed: self)
     }
     
     public struct Return: Keyed, Codable {

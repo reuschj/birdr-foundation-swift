@@ -20,8 +20,8 @@ public struct ImageStore: UniquelyIdentified, Codable {
     }
     
     /// Constructs the return type by wrapping itself with a key
-    public func makeReturn() -> Return {
-        Return(key: key, storedImage: self)
+    public func makeReturn(withDifferentKey differentKey: String? = nil) -> Return {
+        Return(key: differentKey ?? key, storedImage: self)
     }
 
     public struct Return: Keyed, Codable {
