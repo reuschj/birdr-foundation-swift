@@ -2,13 +2,15 @@ import Foundation
 import BirdrFoundation
 
 /// A user feed of multiple bird spottings
-public struct SpottingFeed<Spotting>: UniquelyIdentified, Codable where Spotting: PostableSpotting {
-    public var userID: String
+public struct SpottingFeed<Spotting>: UniquelyIdentified, Codable
+    where Spotting: PostableSpotting, Spotting: UniquelyIdentified {
+
+    public var userKey: String
     public var posts: [Post] = []
     public let identification: UUID
 
-    public init(userId: String) {
-        self.userID = userId
+    public init(userKey: String) {
+        self.userKey = userKey
         self.posts = []
         self.identification = UUID()
     }
@@ -19,34 +21,30 @@ public struct SpottingFeed<Spotting>: UniquelyIdentified, Codable where Spotting
     
     public mutating func post(
         spotting: Spotting,
-        withKey key: String,
         at timestamp: Int = getCurrentUnixTimestamp()
     ) {
-        add(post: Post(key: key, timestamp: timestamp, spotting: spotting))
+        add(post: Post(key: spotting.key, timestamp: timestamp))
     }
 
     public struct Post: Timestamped, Keyed, Codable {
         public let key: String
         public let timestamp: Int
-        public let spotting: Spotting
 
         public init(
             key: String,
-            timestamp: Int,
-            spotting: Spotting
+            timestamp: Int
         ) {
             self.key = key
             self.timestamp = timestamp
-            self.spotting = spotting
         }
     }
     
     // Just used for request decoding
     public struct Request: Codable {
-        public var userID: String
+        public var userKey: String
         
         public func convert() -> SpottingFeed<Spotting> {
-            SpottingFeed(userId: self.userID)
+            SpottingFeed(userKey: self.userKey)
         }
     }
     
