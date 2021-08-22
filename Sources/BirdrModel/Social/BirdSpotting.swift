@@ -1,9 +1,7 @@
 public struct BirdSpotting: PostableSpotting {
-    public typealias BirdInformationType = BirdIdenfication
-
     public var title: String
     public var imageKeys: Set<String>
-    public var bird: BirdIdenfication
+    public var bird: BirdIdentification
     public var location: Location?
     public var timestamp: Int?
     public var description: String?
@@ -11,7 +9,7 @@ public struct BirdSpotting: PostableSpotting {
     public init(
         title: String,
         imageKeys: Set<String> = [],
-        bird: BirdIdenfication,
+        bird: BirdIdentification,
         location: Location?,
         timestamp: Int?,
         description: String?

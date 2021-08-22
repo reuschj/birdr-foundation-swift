@@ -1,5 +1,5 @@
 /// Presets
-extension BirdIdenfication {
+extension BirdIdentification {
 
     // TODO: Build out
 
@@ -15,7 +15,7 @@ extension BirdIdenfication {
 
         public var description: String { identification.description }
 
-        public var identification: BirdIdenfication {
+        public var identification: BirdIdentification {
             switch self {
             case .americanRobin: return .americanRobin
             case .blackNoddy: return .blackNoddy
@@ -28,7 +28,7 @@ extension BirdIdenfication {
         }
     }
 
-    public static var americanRobin: BirdIdenfication {
+    public static var americanRobin: BirdIdentification {
         Self.init(called: "American Robin", taxonomy: BirdTaxonomy(
             order: .passeriformes,
             family: .turdidae,
@@ -37,7 +37,7 @@ extension BirdIdenfication {
         ))
     }
 
-    public static var blueAndYellowMacaw: BirdIdenfication {
+    public static var blueAndYellowMacaw: BirdIdentification {
         Self.init(called: "Blue and Yellow Macaw", taxonomy: BirdTaxonomy(
             order: .psittaciformes,
             family: .psittacidae,
@@ -46,7 +46,7 @@ extension BirdIdenfication {
         ))
     }
 
-    public static var blueJay: BirdIdenfication {
+    public static var blueJay: BirdIdentification {
         Self.init(called: "Blue Jay", taxonomy: BirdTaxonomy(
             order: .passeriformes,
             family: .corvidae,
@@ -55,7 +55,7 @@ extension BirdIdenfication {
         ))
     }
 
-    public static var blackNoddy: BirdIdenfication {
+    public static var blackNoddy: BirdIdentification {
         Self.init(called: "Black Noddy", taxonomy: BirdTaxonomy(
             order: .charadriiformes,
             family: .laridae,
@@ -64,7 +64,7 @@ extension BirdIdenfication {
         ))
     }
 
-    public static var houseSparrow: BirdIdenfication {
+    public static var houseSparrow: BirdIdentification {
         Self.init(called: "House Sparrow", taxonomy: BirdTaxonomy(
             order: .charadriiformes,
             family: .passeridae,
@@ -73,7 +73,7 @@ extension BirdIdenfication {
         ))
     }
 
-    public static var longTailedBroadbill: BirdIdenfication {
+    public static var longTailedBroadbill: BirdIdentification {
         Self.init(called: "Long-tailed Broadbill", taxonomy: BirdTaxonomy(
             order: .passeriformes,
             family: .eurylaimidae,
@@ -82,7 +82,7 @@ extension BirdIdenfication {
         ))
     }
 
-    public static var northernCardinal: BirdIdenfication {
+    public static var northernCardinal: BirdIdentification {
         Self.init(called: "Northern Cardinal", taxonomy: BirdTaxonomy(
             order: .passeriformes,
             family: .cardinalidae,
