@@ -1,9 +1,12 @@
 import Foundation
+import BirdrFoundation
 
-public struct ImageStore: Codable {
+/// Holder for image
+public struct ImageStore: UniquelyIdentified, Codable {
     public let data: Data
     public let type: String
     public let name: String?
+    public let identification: UUID
 
     public init(
         data: Data,
@@ -13,18 +16,16 @@ public struct ImageStore: Codable {
         self.data = data
         self.type = type
         self.name = name
+        self.identification = UUID()
+    }
+    
+    /// Constructs the return type by wrapping itself with a key
+    public func makeReturn() -> Return {
+        Return(key: key, storedImage: self)
     }
 
-    public struct Return: Codable {
+    public struct Return: Keyed, Codable {
         public let key: String
         public let storedImage: ImageStore
-        
-        public init(
-            key: String,
-            storedImage: ImageStore
-        ) {
-            self.key = key
-            self.storedImage = storedImage
-        }
     }
 }

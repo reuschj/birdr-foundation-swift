@@ -1,4 +1,5 @@
 import Foundation
+import BirdrFoundation
 
 /// Defines any type that can hold data for a 
 public protocol PostableSpotting: PossiblyTimestamped, Codable {
