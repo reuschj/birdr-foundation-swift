@@ -27,6 +27,31 @@ public struct ImageStore: UniquelyIdentified, Codable {
         self.init(data: data, type: imageType, withName: name)
     }
     
+    public init(
+        uuid: UUID,
+        data: Data,
+        type: ImageType,
+        withName name: String? = nil
+    ) {
+        self.data = data
+        self.type = type
+        self.name = name
+        self.identification = uuid
+    }
+    
+    public init?(
+        uuidString: String,
+        data: Data,
+        type: ImageType? = nil,
+        withName name: String? = nil
+    ) {
+        guard
+            let uuid = UUID(uuidString: uuidString),
+            let imageType = type ?? ImageType(fromData: data)
+        else { return nil }
+        self.init(uuid: uuid, data: data, type: imageType, withName: name)
+    }
+    
     // Just used for request decoding
     public struct Request: Codable {
         public var data: Data
