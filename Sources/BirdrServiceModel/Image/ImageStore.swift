@@ -34,9 +34,15 @@ public struct ImageStore: UniquelyIdentified, Codable {
         public var name: String?
         
         public func convert() -> ImageStore? {
-            ImageStore(
+            guard let explicitType = self.type else {
+                return ImageStore(
+                    data: self.data,
+                    withName: self.name
+                )
+            }
+            return ImageStore(
                 data: self.data,
-                type: self.type,
+                type: explicitType,
                 withName: self.name
             )
         }
