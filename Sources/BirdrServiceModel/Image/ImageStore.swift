@@ -7,17 +7,24 @@ public struct ImageStore: UniquelyIdentified, Codable {
     public let type: ImageType
     public let name: String?
     public let identification: UUID
+    
+    public init(
+        data: Data,
+        type: ImageType,
+        withName name: String? = nil
+    ) {
+        self.data = data
+        self.type = type
+        self.name = name
+        self.identification = UUID()
+    }
 
     public init?(
         data: Data,
-        type: ImageType? = nil,
         withName name: String? = nil
     ) {
-        guard let imageType = type ?? ImageType(fromData: data) else { return nil }
-        self.data = data
-        self.type = imageType
-        self.name = name
-        self.identification = UUID()
+        guard let imageType = ImageType(fromData: data) else { return nil }
+        self.init(data: data, type: imageType, withName: name)
     }
     
     // Just used for request decoding
