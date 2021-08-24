@@ -4,28 +4,29 @@ import BirdrFoundation
 /// Holder for image
 public struct ImageStore: UniquelyIdentified, Codable {
     public let data: Data
-    public let type: String
+    public let type: ImageType
     public let name: String?
     public let identification: UUID
 
-    public init(
+    public init?(
         data: Data,
-        type: String,
+        type: ImageType? = nil,
         withName name: String? = nil
     ) {
+        guard let imageType = type ?? ImageType(fromData: data) else { return nil }
         self.data = data
-        self.type = type
+        self.type = imageType
         self.name = name
         self.identification = UUID()
     }
     
     // Just used for request decoding
     public struct Request: Codable {
-        public let data: Data
-        public let type: String
-        public let name: String?
+        public var data: Data
+        public var type: ImageType? = nil
+        public var name: String?
         
-        public func convert() -> ImageStore {
+        public func convert() -> ImageStore? {
             ImageStore(
                 data: self.data,
                 type: self.type,
