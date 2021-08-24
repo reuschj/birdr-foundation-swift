@@ -9,7 +9,9 @@ public struct SpottingFeed<Spotting>: UniquelyIdentified, Codable
     public var posts: [Post] = []
     public let identification: UUID
 
-    public init(userKey: String) {
+    public init(
+        userKey: String
+    ) {
         self.userKey = userKey
         self.posts = []
         self.identification = UUID()

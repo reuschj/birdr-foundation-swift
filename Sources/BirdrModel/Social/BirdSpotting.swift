@@ -15,9 +15,9 @@ public struct BirdSpotting: UniquelyIdentified, PostableSpotting {
         title: String,
         imageKeys: Set<String> = [],
         bird: BirdIdentification,
-        location: Location?,
-        timestamp: Int?,
-        description: String?
+        location: Location? = nil,
+        timestamp: Int? = nil,
+        description: String? = nil
     ) {
         self.title = title
         self.imageKeys = imageKeys
